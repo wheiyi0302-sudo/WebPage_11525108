@@ -1,450 +1,2397 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="藍天咖啡，為手沖咖啡愛好者挑選當季精品咖啡豆，讓每一杯都清澈、明亮、值得細品。">
-  <title>藍天咖啡｜讓風味，慢慢抵達</title>
+  <meta name="description" content="阿勝早餐 - 專為常吃早餐者打造的西式朝食專賣店。嚴選厚切肉排、香酥吐司、招牌漢堡與現調飲品，現點現做，用美味喚醒您的活力每一天！">
+  <title>阿勝早餐 A-Sheng Breakfast｜人氣西式朝食・現點現做・喚醒活力</title>
+  
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;900&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --navy: #062742;
-      --blue: #0c5b95;
-      --sky: #75c6e8;
-      --mist: #eaf5f7;
-      --cream: #fbfaf6;
-      --ink: #122534;
-      --muted: #607482;
-      --line: #d7e4e8;
-      --sand: #e5b66b;
-      --shadow: 0 18px 50px rgba(6, 39, 66, .13);
+      /* 品牌核心顏色：藍色系 (Blue Theme) */
+      --primary: #1e40af;       /* 皇家深藍 - 主色 */
+      --primary-dark: #172554;  /* 深夜藍 - 頁尾與深色背景 */
+      --primary-light: #3b82f6; /* 晨光蔚藍 - 強調與漸層 */
+      --primary-soft: #eff6ff;  /* 柔和冰藍 - 區塊淺色背景 */
+      --primary-border: #bfdbfe;/* 藍色邊框 */
+
+      /* 輔助暖色：提升早晨食慾與元氣感 */
+      --accent: #f59e0b;        /* 晨陽金黃 - 蛋黃/起司/熱情 */
+      --accent-hover: #d97706;
+      --accent-soft: #fef3c7;
+      --warm-red: #ef4444;      /* 特價與標籤強調 */
+
+      /* 中性色彩 */
+      --text-main: #0f172a;     /* 深炭黑 */
+      --text-muted: #64748b;    /* 次要說明文字 */
+      --bg-page: #f8fafc;       /* 頁面背景 */
+      --white: #ffffff;
+      --border-line: #e2e8f0;
+
+      /* 陰影與圓角 */
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 2px 6px rgba(30, 64, 175, 0.06);
+      --shadow-md: 0 8px 24px rgba(30, 64, 175, 0.08);
+      --shadow-lg: 0 16px 36px rgba(30, 64, 175, 0.12);
+      --shadow-hover: 0 20px 40px rgba(30, 64, 175, 0.16);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
-      color: var(--ink);
-      background: var(--cream);
-      font: 16px/1.7 "Noto Sans TC", sans-serif;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
-    a { color: inherit; text-decoration: none; }
-    button, input { font: inherit; }
-    button { cursor: pointer; }
-    .wrap { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
-    .eyebrow {
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--primary-light);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* 頂部通知條 */
+    .top-bar {
+      background: var(--primary-dark);
+      color: #93c5fd;
+      font-size: 13px;
+      padding: 7px 0;
+      text-align: center;
+      letter-spacing: 0.03em;
+    }
+    .top-bar span {
+      color: #fde047;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+
+    /* 導覽列 Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-line);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 76px;
+      position: relative;
+    }
+
+    .brand-logo {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 0 0 18px;
-      color: var(--blue);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .18em;
+      font-weight: 900;
+      font-size: 22px;
+      color: var(--primary);
+      letter-spacing: 0.02em;
     }
-    .eyebrow::before { width: 28px; height: 1px; background: currentColor; content: ""; }
-    .section-title {
-      margin: 0;
-      font: 800 clamp(30px, 4vw, 46px)/1.28 "Noto Serif TC", serif;
-      letter-spacing: .045em;
-    }
-    .text-blue { color: var(--blue); }
-    .button, .outline-link {
-      display: inline-flex;
-      min-height: 50px;
+
+    .brand-icon-box {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: var(--white);
+      border-radius: var(--radius-md);
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 23px;
-      border: 1px solid transparent;
-      border-radius: 2px;
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+    }
+
+    .brand-title-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-en {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-top: -2px;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 15px;
+      font-weight: 600;
+      color: #334155;
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.25s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cart-trigger-btn {
+      position: relative;
+      background: var(--primary-soft);
+      border: 1px solid var(--primary-border);
+      color: var(--primary);
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .cart-trigger-btn:hover {
+      background: #dbeafe;
+      transform: scale(1.05);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--warm-red);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--white);
+    }
+
+    .btn-header-order {
+      background: var(--primary);
+      color: var(--white);
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
       font-size: 14px;
       font-weight: 700;
-      letter-spacing: .04em;
-      transition: transform .25s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(30, 64, 175, 0.25);
     }
-    .button:hover, .outline-link:hover { transform: translateY(-2px); }
-    .button--sand { color: var(--navy); background: var(--sand); }
-    .button--sand:hover { background: #f1cb8b; }
-    .button--dark { color: var(--navy); background: #fff; }
-    .outline-link { border-color: rgba(255,255,255,.72); color: #fff; }
-    .outline-link:hover { color: var(--navy); background: #fff; }
-    :focus-visible { outline: 3px solid var(--sky); outline-offset: 4px; }
+    .btn-header-order:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(30, 64, 175, 0.35);
+    }
 
-    /* Header & hero */
-    .site-header { position: absolute; z-index: 20; top: 0; left: 0; width: 100%; border-bottom: 1px solid rgba(255,255,255,.28); }
-    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { display: inline-flex; align-items: center; gap: 11px; color: #fff; }
-    .brand-mark { width: 29px; height: 29px; display: grid; place-items: center; border: 1px solid var(--sky); border-radius: 50%; color: var(--sky); font: 700 16px/1 "Playfair Display", serif; }
-    .brand-copy { display: grid; line-height: 1.05; }
-    .brand-copy strong { font-size: 13px; letter-spacing: .08em; }
-    .brand-copy small { margin-top: 4px; font-size: 8px; letter-spacing: .18em; opacity: .7; }
-    .nav-links { display: flex; align-items: center; gap: clamp(16px, 2.4vw, 31px); }
-    .nav-links a { position: relative; color: #fff; font-size: 13px; font-weight: 500; white-space: nowrap; }
-    .nav-links a:not(.nav-cta)::after { position: absolute; right: 0; bottom: -5px; left: auto; width: 0; height: 1px; background: var(--sky); content: ""; transition: width .25s ease; }
-    .nav-links a:not(.nav-cta):hover::after { right: auto; left: 0; width: 100%; }
-    .nav-links .nav-cta { padding: 8px 13px; border: 1px solid rgba(255,255,255,.72); }
-    .nav-links .nav-cta:hover { color: var(--navy); background: #fff; }
-    .menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.7); color: #fff; background: transparent; font-size: 23px; line-height: 1; }
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 26px;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+    }
 
-    .hero { position: relative; min-height: 704px; overflow: hidden; color: #fff; background: var(--navy); isolation: isolate; }
-    .hero::before { position: absolute; z-index: -2; top: -320px; right: -210px; width: 810px; height: 810px; border-radius: 50%; background: radial-gradient(circle, rgba(117,198,232,.38), rgba(12,91,149,.18) 38%, transparent 69%); content: ""; }
-    .hero::after { position: absolute; z-index: -1; right: 12%; bottom: -430px; width: 780px; height: 780px; border: 1px solid rgba(117,198,232,.18); border-radius: 50%; box-shadow: 0 0 0 65px rgba(117,198,232,.035), 0 0 0 154px rgba(117,198,232,.025); content: ""; }
-    .hero-grid { min-height: 704px; display: grid; grid-template-columns: 1.02fr .98fr; gap: 45px; align-items: center; padding: 122px 0 72px; }
-    .hero-copy { position: relative; z-index: 2; }
-    .hero .eyebrow { color: var(--sky); }
-    .hero h1 { max-width: 650px; margin: 0 0 23px; font: 800 clamp(42px, 5.5vw, 68px)/1.22 "Noto Serif TC", serif; letter-spacing: .05em; }
-    .hero h1 span { color: var(--sky); }
-    .hero-lede { max-width: 500px; margin: 0; color: rgba(255,255,255,.79); font-size: 16px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 31px; }
-    .hero-note { margin: 31px 0 0; color: rgba(255,255,255,.55); font: 600 11px/1.5 "Playfair Display", serif; letter-spacing: .16em; }
-    .scroll-cue { position: absolute; bottom: 35px; left: 0; display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.63); font-size: 10px; font-weight: 600; letter-spacing: .18em; }
-    .scroll-cue::before { width: 38px; height: 1px; background: var(--sky); content: ""; }
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 100%);
+      padding: 70px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
 
-    .hero-art { position: relative; align-self: stretch; min-height: 470px; overflow: hidden; }
-    .hero-art .sun { position: absolute; top: 52px; right: 54px; width: clamp(138px, 18vw, 200px); aspect-ratio: 1; border-radius: 50%; background: #b9e8f5; box-shadow: 0 0 0 27px rgba(117,198,232,.09), 0 0 0 59px rgba(117,198,232,.045); }
-    .mountain { position: absolute; right: -11%; bottom: 6px; width: 116%; height: 260px; transform: skewY(-9deg); transform-origin: right bottom; background: linear-gradient(146deg, transparent 0 27%, rgba(61,145,184,.36) 27.3% 48%, rgba(17,97,143,.77) 48.3%); clip-path: polygon(0 62%, 28% 20%, 44% 57%, 68% 4%, 100% 57%, 100% 100%, 0 100%); }
-    .mountain--back { right: 13%; bottom: 98px; width: 108%; height: 220px; opacity: .46; transform: skewY(-4deg); background: #2a81ae; clip-path: polygon(0 84%, 31% 30%, 45% 62%, 66% 9%, 100% 66%, 100% 100%, 0 100%); }
-    .horizon { position: absolute; right: -4%; bottom: 0; width: 116%; height: 112px; background: linear-gradient(90deg, rgba(7,45,75,.5), #0d5684); transform: skewY(-4deg); }
-    .coffee-vessel { position: absolute; z-index: 4; right: 18%; bottom: 36px; width: 192px; height: 274px; filter: drop-shadow(18px 22px 14px rgba(0,0,0,.22)); }
-    .vessel-neck { position: absolute; top: 0; left: 62px; width: 68px; height: 42px; border: 7px solid #b3e2ef; border-bottom: 0; border-radius: 50% 50% 0 0; background: rgba(6,39,66,.62); }
-    .vessel-body { position: absolute; top: 33px; left: 18px; width: 150px; height: 212px; border: 7px solid #b3e2ef; border-radius: 31% 31% 42% 42% / 12% 12% 37% 37%; background: linear-gradient(90deg, rgba(30,112,151,.9), rgba(5,35,60,.9) 45%, rgba(83,167,198,.8)); overflow: hidden; }
-    .vessel-body::before { position: absolute; top: 15px; left: 0; width: 100%; height: 5px; background: rgba(197,237,244,.8); box-shadow: 0 48px rgba(197,237,244,.25), 0 95px rgba(197,237,244,.18), 0 145px rgba(197,237,244,.13); content: ""; }
-    .vessel-body::after { position: absolute; top: 5px; left: 48%; width: 24px; height: 200px; border-radius: 50%; background: rgba(218,247,251,.17); content: ""; }
-    .vessel-handle { position: absolute; right: 0; bottom: 49px; width: 62px; height: 98px; border: 10px solid #a9dce9; border-left: 0; border-radius: 0 53px 53px 0; }
-    .art-label { position: absolute; z-index: 5; right: 0; bottom: 64px; display: grid; gap: 3px; color: rgba(255,255,255,.73); font-size: 11px; letter-spacing: .1em; text-align: right; }
-    .art-label strong { color: var(--sky); font: 700 22px/1 "Playfair Display", serif; }
+    .hero-decor-circle {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(191, 219, 254, 0.4) 0%, rgba(239, 246, 255, 0) 70%);
+      top: -150px;
+      right: -100px;
+      pointer-events: none;
+    }
 
-    /* Story */
-    .story { padding: 118px 0; background: #fff; }
-    .story-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(45px, 8vw, 105px); align-items: center; }
-    .story-visual { position: relative; min-height: 416px; }
-    .seal { position: absolute; top: 0; left: 0; width: 310px; height: 310px; display: grid; place-items: center; border: 1px solid #a8d2df; border-radius: 50%; color: var(--blue); background: radial-gradient(circle at 35% 30%, #fff 0, #eaf6f8 68%, #d9edf1 100%); }
-    .seal::before, .seal::after { position: absolute; border: 1px solid rgba(12,91,149,.25); border-radius: 50%; content: ""; }
-    .seal::before { inset: 17px; }
-    .seal::after { inset: 44px; border-style: dashed; }
-    .seal-inner { position: relative; z-index: 1; display: grid; gap: 7px; text-align: center; }
-    .seal-inner b { font: 700 42px/1 "Playfair Display", serif; }
-    .seal-inner span { font-size: 13px; font-weight: 700; letter-spacing: .1em; }
-    .seal-inner small { font: 600 9px/1.5 "Playfair Display", serif; letter-spacing: .15em; }
-    .blue-note { position: absolute; right: 0; bottom: 0; width: 235px; padding: 27px 28px; color: #fff; background: var(--navy); box-shadow: var(--shadow); }
-    .blue-note .eyebrow { margin-bottom: 9px; color: var(--sky); font-size: 9px; }
-    .blue-note p { margin: 0; font: 700 20px/1.55 "Noto Serif TC", serif; letter-spacing: .05em; }
-    .story-copy p { margin: 19px 0 0; color: var(--muted); }
-    .inline-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; padding-bottom: 5px; border-bottom: 1px solid var(--blue); color: var(--blue); font-weight: 700; }
-    .inline-link:hover { color: var(--navy); }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 50px;
+      position: relative;
+      z-index: 2;
+    }
 
-    /* Coffee collection */
-    .coffee { padding: 111px 0 120px; background: var(--mist); }
-    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 39px; }
-    .section-heading p { max-width: 370px; margin: 0; color: var(--muted); }
-    .coffee-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 19px; }
-    .coffee-card { position: relative; min-height: 384px; display: flex; flex-direction: column; overflow: hidden; padding: 30px; color: #fff; background: var(--navy); box-shadow: var(--shadow); }
-    .coffee-card:nth-child(2) { background: #106396; }
-    .coffee-card:nth-child(3) { background: #164c68; }
-    .coffee-card::after { position: absolute; right: -90px; bottom: -90px; width: 260px; height: 260px; border: 1px solid rgba(255,255,255,.24); border-radius: 50%; box-shadow: 0 0 0 27px rgba(255,255,255,.045), 0 0 0 65px rgba(255,255,255,.025); content: ""; }
-    .card-top, .coffee-card h3, .flavour, .card-footer { position: relative; z-index: 1; }
-    .card-top { color: var(--sky); font: 700 12px/1.3 "Playfair Display", serif; letter-spacing: .12em; }
-    .origin { margin: 25px 0 8px; color: rgba(255,255,255,.69); font-size: 10px; font-weight: 700; letter-spacing: .15em; }
-    .coffee-card h3 { margin: 0; font: 700 26px/1.38 "Noto Serif TC", serif; letter-spacing: .04em; }
-    .flavour { margin: 15px 0 0; color: rgba(255,255,255,.73); font-size: 14px; }
-    .card-footer { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin-top: auto; }
-    .price { font: 700 15px/1.3 "Playfair Display", serif; letter-spacing: .04em; }
-    .save-coffee { padding: 0 0 5px; border: 0; border-bottom: 1px solid rgba(255,255,255,.72); color: #fff; background: transparent; font-size: 13px; font-weight: 700; white-space: nowrap; transition: color .2s, border-color .2s; }
-    .save-coffee:hover { border-color: var(--sand); color: var(--sand); }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #dbeafe;
+      color: var(--primary);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+    }
 
-    /* Brew */
-    .brew { padding: 118px 0; background: #fff; }
-    .brew-grid { display: grid; grid-template-columns: .93fr 1.07fr; gap: clamp(42px, 8vw, 90px); align-items: center; }
-    .brew-art { position: relative; height: 414px; overflow: hidden; background: linear-gradient(136deg, #e3f4f7 0 48%, #f8fcfc 48% 100%); }
-    .brew-art::before { position: absolute; top: 37px; left: 35px; width: 68px; height: 41px; border-top: 1px solid #6cb4ce; border-bottom: 1px solid #6cb4ce; content: ""; }
-    .brew-art::after { position: absolute; top: 57px; left: 35px; width: 43px; border-top: 1px solid #6cb4ce; content: ""; }
-    .water-rings { position: absolute; top: 67px; left: 50%; width: 245px; height: 245px; border: 1px solid rgba(12,91,149,.27); border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 0 30px rgba(117,198,232,.12), 0 0 0 74px rgba(117,198,232,.065); }
-    .water-rings::before { position: absolute; top: 18px; left: 50%; width: 1px; height: 58px; background: #6bb8d1; content: ""; transform: translateX(-50%); }
-    .dripper { position: absolute; z-index: 2; top: 134px; left: 50%; width: 147px; height: 151px; border: 7px solid var(--blue); border-top: 0; background: linear-gradient(130deg, rgba(255,255,255,.85), rgba(117,198,232,.25)); clip-path: polygon(0 0, 100% 0, 74% 100%, 26% 100%); transform: translateX(-50%); }
-    .dripper::after { position: absolute; right: 32px; bottom: 19px; left: 32px; height: 33px; border-top: 2px solid rgba(12,91,149,.55); border-bottom: 2px solid rgba(12,91,149,.35); content: ""; }
-    .carafe { position: absolute; z-index: 1; bottom: 56px; left: 50%; width: 139px; height: 106px; border: 6px solid var(--blue); border-radius: 16px 16px 45% 45%; background: rgba(117,198,232,.23); transform: translateX(-50%); }
-    .carafe::before { position: absolute; top: -28px; left: 29px; width: 70px; height: 28px; border: 6px solid var(--blue); border-bottom: 0; border-radius: 50% 50% 0 0; content: ""; }
-    .brew-caption { position: absolute; right: 24px; bottom: 19px; color: var(--blue); text-align: right; }
-    .brew-caption span { display: block; font: 700 11px/1.5 "Playfair Display", serif; letter-spacing: .12em; }
-    .brew-caption strong { font: 700 24px/1.1 "Playfair Display", serif; }
-    .brew-copy > p { margin: 18px 0 25px; color: var(--muted); }
-    .brew-steps { border-top: 1px solid var(--line); }
-    .brew-step { display: grid; grid-template-columns: 52px 1fr; gap: 15px; padding: 18px 0; border-bottom: 1px solid var(--line); }
-    .step-number { color: var(--blue); font: 700 24px/1 "Playfair Display", serif; }
-    .brew-step h3 { margin: 0; font: 700 16px/1.5 "Noto Serif TC", serif; }
-    .brew-step p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+    .hero-title {
+      font-size: clamp(34px, 4.2vw, 52px);
+      font-weight: 900;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 22px;
+      letter-spacing: -0.02em;
+    }
 
-    /* Subscribe and footer */
-    .visit { position: relative; overflow: hidden; padding: 108px 0 113px; color: #fff; text-align: center; background: var(--navy); }
-    .visit::before, .visit::after { position: absolute; width: 390px; height: 390px; border: 1px solid rgba(117,198,232,.17); border-radius: 50%; content: ""; }
-    .visit::before { top: -245px; left: -153px; box-shadow: 0 0 0 45px rgba(117,198,232,.035); }
-    .visit::after { right: -170px; bottom: -260px; box-shadow: 0 0 0 50px rgba(117,198,232,.035); }
-    .visit .wrap { position: relative; z-index: 1; max-width: 715px; }
-    .visit .eyebrow { justify-content: center; color: var(--sky); }
-    .visit h2 { margin: 0; font: 800 clamp(30px, 4vw, 46px)/1.3 "Noto Serif TC", serif; letter-spacing: .045em; }
-    .visit p { max-width: 510px; margin: 19px auto 29px; color: rgba(255,255,255,.72); }
-    .subscribe-form { display: flex; min-height: 58px; border: 1px solid rgba(255,255,255,.62); }
-    .subscribe-form input { min-width: 0; flex: 1; padding: 0 18px; border: 0; color: #fff; outline: none; background: transparent; }
-    .subscribe-form input::placeholder { color: rgba(255,255,255,.56); }
-    .subscribe-form button { padding: 0 23px; border: 0; color: var(--navy); background: var(--sand); font-size: 14px; font-weight: 700; white-space: nowrap; transition: background .2s; }
-    .subscribe-form button:hover { background: #f1cb8b; }
-    .site-footer { padding: 66px 0 23px; color: rgba(255,255,255,.68); background: #031c31; }
-    .footer-grid { display: grid; grid-template-columns: 1.45fr .8fr 1fr; gap: 55px; padding-bottom: 48px; }
-    .footer-brand .brand { margin-bottom: 16px; }
-    .footer-brand p { max-width: 330px; margin: 0; font-size: 14px; }
-    .footer-title { margin: 0 0 14px; color: var(--sky); font-size: 11px; font-weight: 700; letter-spacing: .18em; }
-    .footer-links { display: grid; gap: 8px; font-size: 14px; }
-    .footer-links a:hover { color: var(--sky); }
-    .footer-links address { font-style: normal; }
-    .footer-bottom { display: flex; justify-content: space-between; gap: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.17); color: rgba(255,255,255,.44); font: 600 10px/1.5 "Playfair Display", serif; letter-spacing: .1em; }
+    .hero-title .highlight-blue {
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+    .hero-title .highlight-blue::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+      width: 100%;
+      height: 10px;
+      background: rgba(147, 197, 253, 0.4);
+      z-index: -1;
+      border-radius: 4px;
+    }
 
-    .toast { position: fixed; z-index: 50; right: 22px; bottom: 22px; max-width: min(370px, calc(100vw - 44px)); padding: 14px 18px; border-left: 3px solid var(--sand); color: #fff; background: var(--navy); box-shadow: var(--shadow); font-size: 14px; opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity .25s ease, transform .25s ease; }
-    .toast.show { opacity: 1; transform: translateY(0); }
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .hero-desc {
+      font-size: 17px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 520px;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .btn-main {
+      background: var(--primary);
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 15px 32px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 8px 24px rgba(30, 64, 175, 0.28);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .btn-main:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(30, 64, 175, 0.35);
+    }
+
+    .btn-secondary {
+      background: var(--white);
+      color: var(--primary);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 15px 28px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--primary-border);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .btn-secondary:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .hero-features-bar {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding-top: 24px;
+      border-top: 1px solid #dbeafe;
+    }
+
+    .feature-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+    }
+    .feature-chip svg {
+      color: var(--primary);
+    }
+
+    /* Hero 右側卡片視覺圖 */
+    .hero-card-showcase {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-main-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid #e0e7ff;
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+    }
+
+    .card-top-tag {
+      background: #fee2e2;
+      color: #b91c1c;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+    .hero-food-banner {
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-food-svg-icon {
+      font-size: 68px;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+    }
+
+    .hero-food-name {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+    .hero-food-sub {
+      font-size: 13px;
+      color: #bfdbfe;
+    }
+
+    .hero-card-info {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hero-card-price-box .old-p {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+    .hero-card-price-box .cur-p {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--primary);
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .btn-quick-add {
+      background: var(--accent);
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+    .btn-quick-add:hover {
+      background: var(--accent-hover);
+      color: var(--white);
+      transform: scale(1.03);
+    }
+
+    .floating-badge-speed {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      background: var(--primary-dark);
+      color: var(--white);
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      animation: floatBadge 3.5s ease-in-out infinite;
+    }
+    .floating-badge-speed span {
+      color: #60a5fa;
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+    }
+
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    /* Section 通用標題 */
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 50px;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--primary);
+      background: #dbeafe;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .section-heading {
+      font-size: clamp(28px, 3.2vw, 38px);
+      font-weight: 900;
+      color: var(--text-main);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* 為什麼選阿勝早餐：4大堅持 */
+    .features-section {
+      padding: 85px 0;
+      background: var(--white);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .feature-box {
+      background: #f8fafc;
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-md);
+      padding: 30px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .feature-box:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary-border);
+      background: var(--white);
+    }
+
+    .feature-icon-wrapper {
+      width: 62px;
+      height: 62px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      transition: all 0.3s ease;
+    }
+    .feature-box:hover .feature-icon-wrapper {
+      background: var(--primary);
+      color: var(--white);
+      transform: scale(1.1);
+    }
+
+    .feature-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* 菜單區域 Menu Section */
+    .menu-section {
+      padding: 90px 0;
+      background: #f1f5f9;
+    }
+
+    .menu-filter-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 42px;
+    }
+
+    .filter-tab {
+      background: var(--white);
+      color: #475569;
+      border: 1px solid var(--border-line);
+      padding: 10px 22px;
+      border-radius: var(--radius-full);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-tab:hover {
+      border-color: var(--primary-border);
+      color: var(--primary);
+    }
+    .filter-tab.active {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.25);
+    }
+
+    .menu-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .food-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-line);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .food-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: #93c5fd;
+    }
+
+    .food-card-thumb {
+      height: 180px;
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .food-card-thumb .food-icon-large {
+      font-size: 72px;
+      transition: transform 0.35s ease;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    }
+    .food-card:hover .food-card-thumb .food-icon-large {
+      transform: scale(1.12);
+    }
+
+    .food-card-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--accent);
+      color: #78350f;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.04em;
+    }
+
+    .food-card-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .food-category-tag {
+      font-size: 12px;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .food-card-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .food-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+
+    .food-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-line);
+    }
+
+    .food-price {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--primary);
+      font-family: 'Outfit', sans-serif;
+    }
+    .food-price span {
+      font-size: 13px;
+      font-weight: 600;
+      margin-right: 2px;
+    }
+
+    .btn-add-cart {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-add-cart:hover {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+
+    /* 晨光特惠專區 Special Offer Banner */
+    .promo-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #1e40af 100%);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .promo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .promo-tag {
+      display: inline-block;
+      background: #fbbf24;
+      color: #78350f;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      margin-bottom: 16px;
+    }
+
+    .promo-title {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 18px;
+    }
+    .promo-title span {
+      color: #93c5fd;
+    }
+
+    .promo-desc {
+      color: #bfdbfe;
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .promo-deals-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .deal-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 22px;
+      border-radius: var(--radius-md);
+      transition: all 0.3s ease;
+    }
+    .deal-card:hover {
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-3px);
+    }
+
+    .deal-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: #fde047;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .deal-card-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .deal-card-desc {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    /* 常客好評 Testimonials */
+    .reviews-section {
+      padding: 85px 0;
+      background: var(--white);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .review-card {
+      background: #f8fafc;
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+    .review-card:hover {
+      border-color: var(--primary-border);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+
+    .star-rating {
+      color: #f59e0b;
+      margin-bottom: 14px;
+      font-size: 15px;
+    }
+
+    .review-text {
+      font-size: 14px;
+      color: #334155;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .reviewer-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .reviewer-avatar {
+      width: 44px;
+      height: 44px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .reviewer-info h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .reviewer-info p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* 門市資訊與線上點餐 Store & Order Section */
+    .store-section {
+      padding: 90px 0;
+      background: #f1f5f9;
+    }
+
+    .store-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .store-info-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      border: 1px solid var(--border-line);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .store-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #dcfce7;
+      color: #166534;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      margin-bottom: 20px;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    .info-list {
+      list-style: none;
+      margin: 24px 0 32px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .info-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-detail strong {
+      display: block;
+      font-size: 14px;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+    .info-detail span {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* 線上預訂表單 Order Form Box */
+    .order-form-box {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      border: 2px solid var(--primary-border);
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .order-form-box h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .order-form-box p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border-line);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      color: var(--text-main);
+      background: #f8fafc;
+      transition: all 0.2s ease;
+      outline: none;
+    }
+    .form-input:focus, .form-select:focus {
+      border-color: var(--primary);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .btn-submit-order {
+      width: 100%;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 14px;
+      border: none;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 18px rgba(30, 64, 175, 0.25);
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+    .btn-submit-order:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(30, 64, 175, 0.35);
+    }
+
+    /* 購物車側邊抽屜 Cart Drawer */
+    .cart-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .cart-drawer-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: min(400px, 100%);
+      height: 100%;
+      background: var(--white);
+      z-index: 201;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .cart-drawer.active {
+      right: 0;
+    }
+
+    .cart-drawer-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--primary-soft);
+    }
+
+    .cart-drawer-header h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cart-close-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+    }
+    .cart-close-btn:hover {
+      color: var(--text-main);
+    }
+
+    .cart-items-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cart-empty-message {
+      text-align: center;
+      color: var(--text-muted);
+      margin: auto 0;
+      font-size: 14px;
+    }
+
+    .cart-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .cart-item-info h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .cart-item-info span {
+      font-size: 13px;
+      color: var(--primary);
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .cart-qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-line);
+      background: #f8fafc;
+      color: var(--text-main);
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qty-btn:hover {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-color: var(--primary-border);
+    }
+
+    .qty-display {
+      font-size: 14px;
+      font-weight: 700;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .cart-drawer-footer {
+      padding: 20px 24px;
+      border-top: 1px solid var(--border-line);
+      background: #f8fafc;
+    }
+
+    .cart-total-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .cart-total-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: #475569;
+    }
+    .cart-total-price {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--primary);
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .btn-checkout-drawer {
+      width: 100%;
+      background: var(--primary);
+      color: var(--white);
+      padding: 14px;
+      border-radius: var(--radius-full);
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(30, 64, 175, 0.25);
+      transition: background 0.2s ease;
+    }
+    .btn-checkout-drawer:hover {
+      background: #1d4ed8;
+    }
+
+    /* 頁尾 Footer */
+    .site-footer {
+      background: var(--primary-dark);
+      color: #94a3b8;
+      padding: 70px 0 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand h3 {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: #cbd5e1;
+    }
+
+    .footer-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 18px;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: #94a3b8;
+    }
+    .footer-links a:hover {
+      color: #93c5fd;
+      padding-left: 4px;
+    }
+
+    .footer-social-box {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: background 0.2s ease;
+    }
+    .social-btn:hover {
+      background: var(--primary-light);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+
+    /* 彈出提示 Toast */
+    .toast-msg {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(30px);
+      background: var(--primary-dark);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--primary-light);
+      font-size: 14px;
+      font-weight: 600;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toast-msg.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* 響應式斷點 Media Queries */
+    @media (max-width: 1024px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .menu-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
 
     @media (max-width: 820px) {
-      .menu-toggle { display: grid; place-items: center; }
-      .nav { position: relative; }
-      .nav-links { position: absolute; top: 78px; right: -24px; left: -24px; max-height: 0; display: grid; gap: 0; overflow: hidden; background: #05233c; transition: max-height .35s ease; }
-      .nav-links.open { max-height: 300px; border-top: 1px solid rgba(255,255,255,.16); }
-      .nav-links a { display: block; padding: 13px 24px; }
-      .nav-links .nav-cta { margin: 5px 24px 15px; padding: 10px 13px; text-align: center; }
-      .hero { min-height: 710px; }
-      .hero-grid { min-height: 710px; grid-template-columns: 1fr; gap: 0; padding: 118px 0 43px; }
-      .hero-art { min-height: 276px; margin-top: -9px; }
-      .hero-art .sun { top: 19px; right: 20%; width: 130px; }
-      .mountain { height: 180px; }
-      .mountain--back { bottom: 69px; height: 150px; }
-      .coffee-vessel { right: 17%; bottom: -12px; transform: scale(.72); transform-origin: bottom right; }
-      .art-label { display: none; }
-      .scroll-cue { display: none; }
-      .story-grid, .brew-grid { grid-template-columns: 1fr; }
-      .story-visual { max-width: 525px; width: 100%; min-height: 400px; }
-      .coffee-grid { grid-template-columns: repeat(2, 1fr); }
-      .coffee-card:nth-child(3) { grid-column: span 2; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .footer-brand { grid-column: 1 / -1; }
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        gap: 16px;
+        border-bottom: 1px solid var(--border-line);
+      }
+      .nav-menu.active {
+        display: flex;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+      .hero-title {
+        font-size: 34px;
+      }
+      .hero-desc {
+        margin: 0 auto 30px;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-features-bar {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .promo-grid {
+        grid-template-columns: 1fr;
+      }
+      .store-grid {
+        grid-template-columns: 1fr;
+      }
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
     }
-    @media (max-width: 560px) {
-      .wrap { width: calc(100% - 34px); }
-      .nav-links { right: -17px; left: -17px; }
-      .hero { min-height: 680px; }
-      .hero-grid { min-height: 680px; padding-top: 106px; }
-      .hero h1 { font-size: 40px; }
-      .hero-lede { font-size: 14px; }
-      .hero-actions { gap: 9px; margin-top: 24px; }
-      .hero-actions .button, .hero-actions .outline-link { min-height: 46px; padding: 8px 15px; font-size: 13px; }
-      .hero-note { margin-top: 21px; }
-      .hero-art { min-height: 219px; }
-      .hero-art .sun { width: 92px; }
-      .coffee-vessel { right: 5%; bottom: -48px; transform: scale(.57); }
-      .story, .coffee, .brew { padding: 76px 0; }
-      .seal { width: 245px; height: 245px; }
-      .seal-inner b { font-size: 35px; }
-      .story-visual { min-height: 347px; }
-      .blue-note { width: 185px; padding: 20px; }
-      .blue-note p { font-size: 16px; }
-      .section-heading { display: block; margin-bottom: 28px; }
-      .section-heading p { margin-top: 14px; font-size: 14px; }
-      .coffee-grid { grid-template-columns: 1fr; }
-      .coffee-card, .coffee-card:nth-child(3) { min-height: 330px; grid-column: auto; }
-      .coffee-card { padding: 25px; }
-      .brew-art { height: 310px; }
-      .water-rings { top: 45px; width: 178px; height: 178px; box-shadow: 0 0 0 23px rgba(117,198,232,.12), 0 0 0 53px rgba(117,198,232,.065); }
-      .dripper { top: 95px; transform: translateX(-50%) scale(.75); }
-      .carafe { bottom: 37px; transform: translateX(-50%) scale(.75); }
-      .visit { padding: 76px 0; }
-      .subscribe-form { display: grid; gap: 0; border: 0; }
-      .subscribe-form input { min-height: 54px; border: 1px solid rgba(255,255,255,.62); }
-      .subscribe-form button { min-height: 54px; margin-top: 10px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 33px; }
-      .footer-brand { grid-column: auto; }
-      .footer-bottom { display: grid; gap: 8px; }
+
+    @media (max-width: 580px) {
+      .container {
+        width: calc(100% - 34px);
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      .menu-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+      .promo-deals-box {
+        grid-template-columns: 1fr;
+      }
     }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
-      .reveal { opacity: 1; transform: none; }
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="site-header" id="top">
-    <nav class="nav wrap" aria-label="主要導覽">
-      <a class="brand" href="#top" aria-label="回到藍天咖啡首頁">
-        <span class="brand-mark" aria-hidden="true">B</span>
-        <span class="brand-copy"><strong>藍天咖啡</strong><small>BLUE SKY COFFEE</small></span>
+
+  <!-- 頂部營業提醒 -->
+  <div class="top-bar">
+    ☀️ 早安！阿勝早餐每日清晨 06:00 準時現點現做 <span>｜ 滿 $200 即享快速外帶通道</span>
+  </div>
+
+  <!-- 主導覽 Header -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <!-- 品牌 Logo -->
+      <a href="#top" class="brand-logo" aria-label="回到阿勝早餐首頁">
+        <div class="brand-icon-box" aria-hidden="true">
+          <!-- 早餐漢堡 Icon -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 11a8 8 0 0 1 16 0v1H4v-1z"/>
+            <path d="M4 17h16a2 2 0 0 1 2 2v1H2v-1a2 2 0 0 1 2-2z"/>
+            <line x1="2" y1="14" x2="22" y2="14"/>
+          </svg>
+        </div>
+        <div class="brand-title-group">
+          <span>阿勝早餐</span>
+          <span class="brand-en">A-SHENG BREAKFAST</span>
+        </div>
       </a>
-      <button class="menu-toggle" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="開啟導覽選單">☰</button>
-      <div class="nav-links" id="navLinks">
-        <a href="#story">我們的故事</a>
-        <a href="#coffee">本季選豆</a>
-        <a href="#brew">沖煮日常</a>
-        <a class="nav-cta" href="#visit">訂閱風味通信</a>
+
+      <!-- 導覽連結 -->
+      <nav aria-label="主要導覽">
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#why-us" class="nav-link">常客首選</a></li>
+          <li><a href="#menu" class="nav-link">人氣西式菜單</a></li>
+          <li><a href="#deals" class="nav-link">晨光特惠</a></li>
+          <li><a href="#reviews" class="nav-link">顧客好評</a></li>
+          <li><a href="#order-now" class="nav-link">門市與外帶</a></li>
+        </ul>
+      </nav>
+
+      <!-- 動作區塊：購物車與線上點餐 -->
+      <div class="nav-actions">
+        <button class="cart-trigger-btn" id="openCartBtn" aria-label="開啟已選餐點清單" aria-haspopup="dialog" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+
+        <a href="#order-now" class="btn-header-order">
+          <span>立即線上點餐</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="開啟行動導覽選單" aria-controls="navMenu" aria-expanded="false">☰</button>
       </div>
-    </nav>
+    </div>
   </header>
 
   <main>
-    <section class="hero" aria-labelledby="heroTitle">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">HAND BREWED · SLOWLY ROASTED</p>
-          <h1 id="heroTitle">讓風味，在<span>藍天</span>下慢慢抵達。</h1>
-          <p class="hero-lede">藍天咖啡為喜歡手沖的您，挑選值得細品的單一產區咖啡豆。從第一縷花香，到最後一口回甘，每一杯都有屬於自己的晴朗天氣。</p>
+    <!-- 首頁主視覺 Hero Section -->
+    <section class="hero-section" id="top" aria-label="主視覺與熱門推薦">
+      <div class="hero-decor-circle" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <!-- 左側文案 -->
+        <div class="hero-text-content">
+          <div class="hero-tag">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+            </svg>
+            專為常吃早餐者打造的西式美味
+          </div>
+
+          <h1 class="hero-title">
+            每一口酥脆多汁，<br>
+            在<span class="highlight-blue">阿勝早餐</span>喚醒一天活力！
+          </h1>
+
+          <p class="hero-desc">
+            堅持每日新鮮鐵板現煎、厚切原塊肉排與酥香金黃吐司。不管是匆忙通勤的上班族、認真求學的學生，還是享受悠閒晨光的你，都能在這裡找到最滿足的早晨滋味。
+          </p>
+
           <div class="hero-actions">
-            <a class="button button--sand" href="#coffee">探索本季咖啡豆 →</a>
-            <a class="outline-link" href="#story">認識藍天</a>
+            <a href="#menu" class="btn-main">
+              <span>瀏覽熱門餐點</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#order-now" class="btn-secondary">
+              <span>預約快速外帶</span>
+            </a>
           </div>
-          <p class="hero-note">TAIPEI · TAIWAN · EST. 2025</p>
-          <span class="scroll-cue">SCROLL TO DISCOVER</span>
-        </div>
-        <div class="hero-art" aria-hidden="true">
-          <div class="sun"></div>
-          <div class="mountain mountain--back"></div>
-          <div class="mountain"></div>
-          <div class="horizon"></div>
-          <div class="coffee-vessel"><div class="vessel-neck"></div><div class="vessel-body"></div><div class="vessel-handle"></div></div>
-          <div class="art-label"><strong>92°C</strong><span>理想水溫</span><span>細細喚醒香氣</span></div>
-        </div>
-      </div>
-    </section>
 
-    <section class="story" id="story" aria-labelledby="storyTitle">
-      <div class="wrap story-grid">
-        <div class="story-visual reveal" aria-hidden="true">
-          <div class="seal"><div class="seal-inner"><b>B</b><span>慢一點，更清楚。</span><small>LET THE FLAVOUR SPEAK</small></div></div>
-          <aside class="blue-note"><p class="eyebrow">BLUE SKY NOTE</p><p>一杯好咖啡，從來不是匆忙完成的事。</p></aside>
+          <!-- 亮點標籤 -->
+          <div class="hero-features-bar">
+            <div class="feature-chip">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              100% 現點現煎
+            </div>
+            <div class="feature-chip">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              原塊安心肉品
+            </div>
+            <div class="feature-chip">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              快速免排隊通道
+            </div>
+          </div>
         </div>
-        <div class="story-copy reveal">
-          <p class="eyebrow">OUR PHILOSOPHY</p>
-          <h2 class="section-title" id="storyTitle">在一杯之間，看見產地的<span class="text-blue">晴朗</span>。</h2>
-          <p>我們相信，精品咖啡的美好不該被複雜掩蓋。以小批次烘焙留住豆子的個性，再用穩定、誠實的手沖，讓風土與時間在杯中變得清晰。</p>
-          <p>給懂得放慢腳步的人，也給每一個想重新認識咖啡的人。</p>
-          <a class="inline-link" href="#brew">看看我們如何沖煮 <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </section>
 
-    <section class="coffee" id="coffee" aria-labelledby="coffeeTitle">
-      <div class="wrap">
-        <div class="section-heading reveal">
-          <div><p class="eyebrow">SEASONAL SELECTION</p><h2 class="section-title" id="coffeeTitle">今天，想喝哪一片<span class="text-blue">藍天</span>？</h2></div>
-          <p>三款當季單品，為不同的晨光、午後與靜夜而選。</p>
-        </div>
-        <div class="coffee-grid">
-          <article class="coffee-card reveal">
-            <div class="card-top">01 / BRIGHT</div><p class="origin">ETHIOPIA · YIRGACHEFFE</p><h3>衣索比亞・耶加雪菲</h3><p class="flavour">白花、佛手柑、蜂蜜</p>
-            <div class="card-footer"><span class="price">NT$ 520 / 200g</span><button class="save-coffee" type="button" data-coffee="衣索比亞・耶加雪菲">加入收藏 ＋</button></div>
-          </article>
-          <article class="coffee-card reveal">
-            <div class="card-top">02 / JUICY</div><p class="origin">KENYA · KIRINYAGA</p><h3>肯亞・祈安布</h3><p class="flavour">黑醋栗、洛神、葡萄柚</p>
-            <div class="card-footer"><span class="price">NT$ 580 / 200g</span><button class="save-coffee" type="button" data-coffee="肯亞・祈安布">加入收藏 ＋</button></div>
-          </article>
-          <article class="coffee-card reveal">
-            <div class="card-top">03 / ROUND</div><p class="origin">COLOMBIA · HUILA</p><h3>哥倫比亞・慧蘭</h3><p class="flavour">黃桃、焦糖、可可尾韻</p>
-            <div class="card-footer"><span class="price">NT$ 460 / 200g</span><button class="save-coffee" type="button" data-coffee="哥倫比亞・慧蘭">加入收藏 ＋</button></div>
-          </article>
-        </div>
-      </div>
-    </section>
+        <!-- 右側招牌餐點卡片展示 -->
+        <div class="hero-card-showcase">
+          <div class="floating-badge-speed">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <div>
+              線上預訂 <span>10 分鐘</span> 取餐
+            </div>
+          </div>
 
-    <section class="brew" id="brew" aria-labelledby="brewTitle">
-      <div class="wrap brew-grid">
-        <div class="brew-art reveal" aria-hidden="true"><div class="water-rings"></div><div class="dripper"></div><div class="carafe"></div><div class="brew-caption"><span>V60 / 15G : 240ML</span><strong>2'45''</strong></div></div>
-        <div class="brew-copy reveal">
-          <p class="eyebrow">A QUIET RITUAL</p>
-          <h2 class="section-title" id="brewTitle">把時間交給水，讓咖啡說<span class="text-blue">自己的話</span>。</h2>
-          <p>不需要繁複儀式，只要三個安靜的步驟。每一個參數，都是為了讓你更靠近豆子原本的樣子。</p>
-          <div class="brew-steps">
-            <div class="brew-step"><span class="step-number">01</span><div><h3>研磨，先聞見期待</h3><p>15g 中細研磨，讓香氣從指尖開始展開。</p></div></div>
-            <div class="brew-step"><span class="step-number">02</span><div><h3>悶蒸，等待第一個呼吸</h3><p>以 92°C 熱水浸潤 30 秒，喚醒甜感與層次。</p></div></div>
-            <div class="brew-step"><span class="step-number">03</span><div><h3>注水，保持自己的節奏</h3><p>穩定畫圈，讓 240ml 的清澈在 2 分 45 秒完成。</p></div></div>
+          <div class="hero-main-card">
+            <span class="card-top-tag">🔥 店長特推・常客必點 No.1</span>
+            
+            <div class="hero-food-banner">
+              <div class="hero-food-svg-icon" aria-hidden="true">🍔</div>
+              <div class="hero-food-name">招牌特厚手打牛肉起司堡</div>
+              <div class="hero-food-sub">Pure Beef · Melted Cheddar · Fresh Salad</div>
+            </div>
+
+            <div class="hero-card-info">
+              <div class="hero-card-price-box">
+                <span class="old-p">原價 NT$ 105</span>
+                <div class="cur-p">NT$ 85</div>
+              </div>
+              <button class="btn-quick-add" type="button" onclick="addToCart('招牌特厚手打牛肉起司堡', 85)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                加一份到點單
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="visit" id="visit" aria-labelledby="visitTitle">
-      <div class="wrap reveal">
-        <p class="eyebrow">THE BLUE SKY LETTER</p>
-        <h2 id="visitTitle">把下一杯好咖啡，寄到你的日常裡。</h2>
-        <p>每月一封風味通信，分享新豆、沖煮靈感與只給會員的小小驚喜。</p>
-        <form class="subscribe-form" id="subscribeForm">
-          <input type="email" aria-label="電子郵件地址" placeholder="your@email.com" required>
-          <button type="submit">訂閱風味通信</button>
-        </form>
+    <!-- 為什麼常吃早餐者都選阿勝早餐：4大品質承諾 -->
+    <section class="features-section" id="why-us" aria-labelledby="featuresHeading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">OUR COMMITMENT</span>
+          <h2 class="section-heading" id="featuresHeading">為什麼每天吃早餐的人，都指名阿勝？</h2>
+          <p class="section-sub">我們懂得每天早晨對時間與美味的雙重苛求，每一份餐點都傾注對西式朝食的熱情與堅持。</p>
+        </div>
+
+        <div class="features-grid">
+          <!-- 特色 1 -->
+          <div class="feature-box">
+            <div class="feature-icon-wrapper" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">現點現煎・拒絕冷硬</h3>
+            <p class="feature-desc">絕不預先保溫存放！點餐後立即鐵板滋滋作響，握在手中始終是剛出爐的酥脆與熱氣。</p>
+          </div>
+
+          <!-- 特色 2 -->
+          <div class="feature-box">
+            <div class="feature-icon-wrapper" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">原塊厚切・安心純肉</h3>
+            <p class="feature-desc">嚴選國產冷藏豬排、無骨嫩雞腿與手打純牛肉，無人工添加黏著劑，咬下肉汁滿溢。</p>
+          </div>
+
+          <!-- 特色 3 -->
+          <div class="feature-box">
+            <div class="feature-icon-wrapper" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">極速出餐・通勤友善</h3>
+            <p class="feature-desc">針對趕時間的學生與上班族，動線最優化！支援線上提早下單，到店直接提袋走。</p>
+          </div>
+
+          <!-- 特色 4 -->
+          <div class="feature-box">
+            <div class="feature-icon-wrapper" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                <line x1="6" y1="1" x2="6" y2="4"/>
+                <line x1="10" y1="1" x2="10" y2="4"/>
+                <line x1="14" y1="1" x2="14" y2="4"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">每日熬煮・好茶香醇</h3>
+            <p class="feature-desc">非廉價香精茶！每日清晨慢火熬煮錫蘭紅茶，搭配牧場鮮奶與現磨義式咖啡，元氣滿分。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 精選菜單 Menu Section -->
+    <section class="menu-section" id="menu" aria-labelledby="menuHeading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">WESTERN BREAKFAST MENU</span>
+          <h2 class="section-heading" id="menuHeading">阿勝招牌西式餐點</h2>
+          <p class="section-sub">豐富多元的西式漢堡、酥烤吐司、歐姆蛋與豪華拼盤，每一樣都是常客百吃不膩的經典。</p>
+        </div>
+
+        <!-- 分類切換按鈕 -->
+        <div class="menu-filter-bar">
+          <button class="filter-tab active" type="button" onclick="filterMenu('all', this)">全部餐點</button>
+          <button class="filter-tab" type="button" onclick="filterMenu('burger', this)">厚實漢堡</button>
+          <button class="filter-tab" type="button" onclick="filterMenu('toast', this)">酥香吐司</button>
+          <button class="filter-tab" type="button" onclick="filterMenu('brunch', this)">早午餐拼盤</button>
+          <button class="filter-tab" type="button" onclick="filterMenu('sides', this)">金黃小點</button>
+          <button class="filter-tab" type="button" onclick="filterMenu('drinks', this)">晨光飲品</button>
+        </div>
+
+        <!-- 餐點卡片 Grid -->
+        <div class="menu-cards-grid" id="menuGrid">
+          
+          <!-- 餐點 1：漢堡 -->
+          <article class="food-card" data-category="burger">
+            <div class="food-card-thumb">
+              <span class="food-card-badge">常客熱門 No.1</span>
+              <div class="food-icon-large" aria-hidden="true">🍔</div>
+            </div>
+            <div class="food-card-body">
+              <span class="food-category-tag">厚實美式漢堡系列</span>
+              <h3 class="food-card-title">招牌花生熔岩厚牛堡</h3>
+              <p class="food-card-desc">現煎純手打厚牛肉、炙烤美式起司、濃郁香醇顆粒花生醬、現煎太陽蛋與鮮脆美生菜。</p>
+              <div class="food-card-footer">
+                <div class="food-price"><span>NT$</span>95</div>
+                <button class="btn-add-cart" type="button" onclick="addToCart('招牌花生熔岩厚牛堡', 95)">
+                  ＋ 加入點單
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 餐點 2：漢堡 -->
+          <article class="food-card" data-category="burger">
+            <div class="food-card-thumb">
+              <span class="food-card-badge">酥脆多汁</span>
+              <div class="food-icon-large" aria-hidden="true">🍗</div>
+            </div>
+            <div class="food-card-body">
+              <span class="food-category-tag">厚實美式漢堡系列</span>
+              <h3 class="food-card-title">美式卡啦咔啦脆雞堡</h3>
+              <p class="food-card-desc">金黃酥脆的無骨雞腿排，搭配特製美式酸甜塔塔醬與新鮮洋蔥番茄，外酥內嫩卡滋作響。</p>
+              <div class="food-card-footer">
+                <div class="food-price"><span>NT$</span>85</div>
+                <button class="btn-add-cart" type="button" onclick="addToCart('美式卡啦咔啦脆雞堡', 85)">
+                  ＋ 加入點單
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 餐點 3：吐司 -->
+          <article class="food-card" data-category="toast">
+            <div class="food-card-thumb">
+              <span class="food-card-badge">人氣早晨必點</span>
+              <div class="food-icon-large" aria-hidden="true">🥪</div>
+            </div>
+            <div class="food-card-body">
+              <span class="food-category-tag">手作酥香吐司系列</span>
+              <h3 class="food-card-title">經典培根起司蛋吐司</h3>
+              <p class="food-card-desc">鮮奶吐司雙面均勻抹上天然奶油烤至香酥，夾入現煎煙燻厚培根與滑嫩歐姆蛋。</p>
+              <div class="food-card-footer">
+                <div class="food-price"><span>NT$</span>65</div>
+                <button class="btn-add-cart" type="button" onclick="addToCart('經典培根起司蛋吐司', 65)">
+                  ＋ 加入點單
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 餐點 4：吐司 -->
+          <article class="food-card" data-category="toast">
+            <div class="food-card-thumb">
+              <div class="food-icon-large" aria-hidden="true">🍞</div>
+            </div>
+            <div class="food-card-body">
+              <span class="food-category-tag">手作酥香吐司系列</span>
+              <h3 class="food-card-title">特製里肌嫩豬排總匯</h3>
+              <p class="food-card-desc">特選溫體原塊豬里肌以獨門醬汁醃漬入味，三層酥烤吐司份量十足，吃一顆飽到中午。</p>
+              <div class="food-card-footer">
+                <div class="food-price"><span>NT$</span>75</div>
+                <button class="btn-add-cart" type="button" onclick="addToCart('特製里肌嫩豬排總匯', 75)">
+                  ＋ 加入點單
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 餐點 5：早午餐拼盤 -->
+          <article class="food-card" data-category="brunch">
+            <div class="food-card-thumb">
+              <span class="food-card-badge">大滿足拼盤</span>
+              <div class="food-icon-large" aria-hidden="true">🍳</div>
+            </div>
+            <div class="food-card-body">
+              <span class="food-category-tag">豐富早午餐大拼盤</span>
+              <h3 class="food-card-title">阿勝西式經典大拼盤</h3>
+              <p class="food-card-desc">含德式香脆香腸、香煎厚切培根、金黃薯餅、法式香草嫩蛋、蒜香吐司與清爽田園沙拉。</p>
+              <div class="food-card-footer">
+                <div class="food-price"><span>NT$</span>145</div>
+                <button class="btn-add-cart" type="button" onclick="addToCart('阿勝西式經典大拼盤', 145)">
+                  ＋ 加入點單
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 餐點 6：早午餐拼盤 -->
+          <article class="food-card" data-category="brunch">
+            <div class="food-card-thumb">
+              <div class="food-icon-large" aria-hidden="true">🥗</div>
+            </div>
+            <div class="food-card-body">
+              <span class="food-category-tag">豐富早午餐大拼盤</span>
+              <h3 class="food-card-title">晨光起司歐姆蛋捲餐</h3>
+              <p class="food-card-desc">三顆鮮蛋煎製而成的爆漿起司歐姆蛋，搭配香脆奶油可頌與當令水果杯，元氣滿點。</p>
+              <div class="food-card-footer">
+                <div class="food-price"><span>NT$</span>130</div>
+                <button class="btn-add-cart" type="button" onclick="addToCart('晨光起司歐姆蛋捲餐', 130)">
+                  ＋ 加入點單
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 餐點 7：炸物小點 -->
+          <article class="food-card" data-category="sides">
+            <div class="food-card-thumb">
+              <span class="food-card-badge">金黃香脆</span>
+              <div class="food-icon-large" aria-hidden="true">🍟</div>
+            </div>
+            <div class="food-card-body">
+              <span class="food-category-tag">香酥經典小點</span>
+              <h3 class="food-card-title">美式金黃香酥薯餅 (2入)</h3>
+              <p class="food-card-desc">外皮酥脆卡滋、內裡綿密甘甜，吃西式早餐絕不可缺少的靈魂小點心。</p>
+              <div class="food-card-footer">
+                <div class="food-price"><span>NT$</span>40</div>
+                <button class="btn-add-cart" type="button" onclick="addToCart('美式金黃香酥薯餅 (2入)', 40)">
+                  ＋ 加入點單
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 餐點 8：炸物小點 -->
+          <article class="food-card" data-category="sides">
+            <div class="food-card-thumb">
+              <div class="food-icon-large" aria-hidden="true">🥟</div>
+            </div>
+            <div class="food-card-body">
+              <span class="food-category-tag">香酥經典小點</span>
+              <h3 class="food-card-title">香酥洋蔥圈佐蜂蜜芥末</h3>
+              <p class="food-card-desc">特選整顆鮮甜洋蔥現裹現炸，沾上阿勝特調甜香芥末醬，每一口都停不下來。</p>
+              <div class="food-card-footer">
+                <div class="food-price"><span>NT$</span>45</div>
+                <button class="btn-add-cart" type="button" onclick="addToCart('香酥洋蔥圈佐蜂蜜芥末', 45)">
+                  ＋ 加入點單
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 餐點 9：飲品 -->
+          <article class="food-card" data-category="drinks">
+            <div class="food-card-thumb">
+              <span class="food-card-badge">每日鮮煮</span>
+              <div class="food-icon-large" aria-hidden="true">☕</div>
+            </div>
+            <div class="food-card-body">
+              <span class="food-category-tag">特調晨光冷熱飲</span>
+              <h3 class="food-card-title">阿勝特選小農鮮奶茶</h3>
+              <p class="food-card-desc">錫蘭紅茶慢火精燉，注入純淨牧場鮮奶，茶香濃郁奶味醇厚，告別早餐店化學奶精！</p>
+              <div class="food-card-footer">
+                <div class="food-price"><span>NT$</span>45</div>
+                <button class="btn-add-cart" type="button" onclick="addToCart('阿勝特選小農鮮奶茶', 45)">
+                  ＋ 加入點單
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 餐點 10：飲品 -->
+          <article class="food-card" data-category="drinks">
+            <div class="food-card-thumb">
+              <div class="food-icon-large" aria-hidden="true">🥤</div>
+            </div>
+            <div class="food-card-body">
+              <span class="food-category-tag">特調晨光冷熱飲</span>
+              <h3 class="food-card-title">醒腦研磨美式黑咖啡</h3>
+              <p class="food-card-desc">精選中深烘焙阿拉比卡咖啡豆，現磨高壓萃取，香醇微苦回甘，上班前來一杯精神百倍。</p>
+              <div class="food-card-footer">
+                <div class="food-price"><span>NT$</span>50</div>
+                <button class="btn-add-cart" type="button" onclick="addToCart('醒腦研磨美式黑咖啡', 50)">
+                  ＋ 加入點單
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 晨光特惠專區 Special Promotion -->
+    <section class="promo-section" id="deals" aria-labelledby="dealsHeading">
+      <div class="container promo-grid">
+        <div>
+          <span class="promo-tag">晨光好康省錢提案</span>
+          <h2 class="promo-title" id="dealsHeading">天天吃早餐，<br>阿勝幫你<span>省荷包又吃飽</span>！</h2>
+          <p class="promo-desc">
+            為回饋天天光顧的常客，阿勝早餐推出專屬晨光套餐與集點優惠。只要提早線上預約或搭配套餐，就能享受超值銅板折扣！
+          </p>
+
+          <a href="#order-now" class="btn-main" style="background: #f59e0b; color: #172554;">
+            <span>立即享有套餐優惠</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </div>
+
+        <div class="promo-deals-box">
+          <div class="deal-card">
+            <span class="deal-badge">🔥 超值優惠 A</span>
+            <h3 class="deal-card-title">主餐＋飲品折 $15</h3>
+            <p class="deal-card-desc">任選一款美式漢堡或酥烤吐司，搭配任一大杯現煮茶飲或咖啡，結帳立享現折 15 元。</p>
+          </div>
+
+          <div class="deal-card">
+            <span class="deal-badge">⭐ 常客專屬 B</span>
+            <h3 class="deal-card-title">滿 10 次送招牌堡</h3>
+            <p class="deal-card-desc">手機號碼加入常客好友，單筆滿 80 元即贈 1 點，集滿 10 點免費兌換 85 元堡類乙份！</p>
+          </div>
+
+          <div class="deal-card">
+            <span class="deal-badge">⚡ 通勤特快 C</span>
+            <h3 class="deal-card-title">提早 15 分鐘預約免排隊</h3>
+            <p class="deal-card-desc">透過線上預訂表單下單，抵達門市直接由「外帶快速通道」領取熱騰騰餐點，趕打卡不遲到。</p>
+          </div>
+
+          <div class="deal-card">
+            <span class="deal-badge">🎉 團購外送 D</span>
+            <h3 class="deal-card-title">辦公室滿額免費送</h3>
+            <p class="deal-card-desc">周邊商辦與學校機關，單筆訂單滿 $499 享店家免運專人親送，晨會早餐首選。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 常客真心好評 Reviews -->
+    <section class="reviews-section" id="reviews" aria-labelledby="reviewsHeading">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">CUSTOMER FEEDBACK</span>
+          <h2 class="section-heading" id="reviewsHeading">常客老饕真心話</h2>
+          <p class="section-sub">看看每天在阿勝早餐打卡的上班族與學生們怎麼說！</p>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div>
+              <div class="star-rating" aria-label="評分 5 星滿分">★★★★★ 5.0</div>
+              <p class="review-text">「身為每天都要吃早餐的上班族，阿勝的牛肉起司堡真的無敵！肉排厚實多汁不是那種扁扁的組合肉，而且線上預訂到店拿了就走，從來沒讓我遲到過！」</p>
+            </div>
+            <div class="reviewer-meta">
+              <div class="reviewer-avatar">林</div>
+              <div class="reviewer-info">
+                <h4>林先生</h4>
+                <p>科技園區上班族・常客 2 年</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div>
+              <div class="star-rating" aria-label="評分 5 星滿分">★★★★★ 5.0</div>
+              <p class="review-text">「最推鮮奶茶跟經典培根起司吐司！吐司邊烤得微焦香酥，裡面的嫩蛋厚實滑順。店員每次招呼都很有精神，吃完真的覺得一整天都被充飽電了。」</p>
+            </div>
+            <div class="reviewer-meta">
+              <div class="reviewer-avatar">陳</div>
+              <div class="reviewer-info">
+                <h4>陳小姐</h4>
+                <p>自由接案設計師・常客 1 年半</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div>
+              <div class="star-rating" aria-label="評分 5 星滿分">★★★★★ 5.0</div>
+              <p class="review-text">「我們全家週末都會來點大拼盤，德式香腸跟薯餅炸得超香脆，小朋友吃得超開心！價格實在、乾淨衛生，是巷弄裡最值得信賴的早餐好鄰居。」</p>
+            </div>
+            <div class="reviewer-meta">
+              <div class="reviewer-avatar">張</div>
+              <div class="reviewer-info">
+                <h4>張爸爸</h4>
+                <p>在地鄰里居民・家庭週末常客</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 門市資訊與線上點餐區塊 Store & Order -->
+    <section class="store-section" id="order-now" aria-labelledby="orderHeading">
+      <div class="container store-grid">
+        <!-- 門市營業資訊 -->
+        <div class="store-info-card">
+          <div class="store-status-pill">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            今日營業中・熱騰騰鐵板出餐中
+          </div>
+
+          <h3 id="orderHeading" style="font-size: 24px; font-weight: 900; color: var(--primary); margin-bottom: 8px;">阿勝早餐 門市資訊</h3>
+          <p style="font-size: 14px; color: var(--text-muted);">
+            歡迎內用悠閒享用，或使用線上表單提前預訂外帶！
+          </p>
+
+          <ul class="info-list">
+            <li class="info-item">
+              <div class="info-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div class="info-detail">
+                <strong>門市地址</strong>
+                <span>台北市大安區晨光路一段 88 號（捷運站步行 3 分鐘）</span>
+              </div>
+            </li>
+
+            <li class="info-item">
+              <div class="info-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <div class="info-detail">
+                <strong>營業時間</strong>
+                <span>週一至週五 06:00 - 13:30 ｜ 週六至週日 06:30 - 14:00</span>
+              </div>
+            </li>
+
+            <li class="info-item">
+              <div class="info-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div class="info-detail">
+                <strong>訂餐專線</strong>
+                <span>(02) 2345-6789 （尖峰時段建議多加利用線上預約）</span>
+              </div>
+            </li>
+
+            <li class="info-item">
+              <div class="info-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+              </div>
+              <div class="info-detail">
+                <strong>多元支付</strong>
+                <span>現金 / LINE Pay / 街口支付 / 悠遊卡 / Apple Pay</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 線上快速預約表單 -->
+        <div class="order-form-box">
+          <h3>線上快速預訂外帶</h3>
+          <p>填寫後立即進單製作，抵達門市免排隊直接取餐！</p>
+
+          <form id="quickOrderForm" onsubmit="handleOrderSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="custName">取餐人姓名 *</label>
+                <input type="text" id="custName" class="form-input" placeholder="例如：王小明" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="custPhone">手機號碼 *</label>
+                <input type="tel" id="custPhone" class="form-input" placeholder="例如：0912-345-678" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="pickupTime">預計取餐時間 *</label>
+                <select id="pickupTime" class="form-select" required>
+                  <option value="10分鐘後">約 10 分鐘後 (現場現做)</option>
+                  <option value="20分鐘後">約 20 分鐘後</option>
+                  <option value="30分鐘後">約 30 分鐘後</option>
+                  <option value="45分鐘後">約 45 分鐘後</option>
+                  <option value="特定時間">今日指定時間 (請於備註填寫)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="orderPayment">付款方式 *</label>
+                <select id="orderPayment" class="form-select">
+                  <option value="現場取餐付款 (現金/行動支付)">門市現場付款</option>
+                  <option value="LINE Pay 線上快捷支付">LINE Pay 線上快捷</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="orderItemsText">欲點餐點與客製需求</label>
+              <input type="text" id="orderItemsText" class="form-input" placeholder="可直接從菜單點擊『＋ 加入點單』，或手動補充（例如：厚牛堡不加洋蔥、大杯奶茶微糖）">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="orderNotes">其他特別備註</label>
+              <input type="text" id="orderNotes" class="form-input" placeholder="例如：需要塑膠袋、要胡椒粉等">
+            </div>
+
+            <button type="submit" class="btn-submit-order">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              送出預約點單・即刻排單製作
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap footer-grid">
-      <div class="footer-brand"><a class="brand" href="#top" aria-label="回到藍天咖啡首頁"><span class="brand-mark" aria-hidden="true">B</span><span class="brand-copy"><strong>藍天咖啡</strong><small>BLUE SKY COFFEE</small></span></a><p>為喜愛手沖咖啡的你，留下 一段慢慢品味、微微放晴的時間。</p></div>
-      <div><p class="footer-title">網站主題</p><div class="footer-links"><a href="#story">我們的故事</a><a href="#coffee">本季選豆</a><a href="#brew">沖煮日常</a></div></div>
-      <div><p class="footer-title">聯絡我們</p><div class="footer-links"><a href="mailto:hello@bluesky.coffee">hello@bluesky.coffee</a><address>台中市西屯區僑光路 100 號</address><span>每日 10:00 — 19:00</span></div></div>
+  <!-- 購物車抽屜 (Cart Drawer) -->
+  <div class="cart-drawer-overlay" id="cartOverlay" onclick="closeCart()" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-label="點餐購物車" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        我的晨光點餐清單
+      </h3>
+      <button class="cart-close-btn" type="button" onclick="closeCart()" aria-label="關閉清單">×</button>
     </div>
-    <div class="wrap footer-bottom"><span>© 2025 BLUE SKY COFFEE. ALL RIGHTS RESERVED.</span><span>BREW SLOW · LIVE BRIGHT</span></div>
+
+    <div class="cart-items-container" id="cartItemsList" role="status">
+      <div class="cart-empty-message">目前尚未選取餐點，請點選菜單中的「＋ 加入點單」！</div>
+    </div>
+
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row">
+        <span class="cart-total-label">總計金額</span>
+        <span class="cart-total-price">NT$ <span id="cartTotalPrice">0</span></span>
+      </div>
+      <button class="btn-checkout-drawer" type="button" onclick="proceedToCheckout()">
+        確認帶入點餐預訂單 →
+      </button>
+    </div>
+  </aside>
+
+  <!-- 頁尾 Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>阿勝早餐 A-SHENG</h3>
+          <p>
+            專注於提供熱騰騰、酥脆多汁的西式朝食。嚴選原塊肉品與現煎手作，用誠懇的一餐，為每一位常客開啟元氣滿滿的一天。
+          </p>
+          <div class="footer-social-box">
+            <a href="#top" class="social-btn" aria-label="Facebook">FB</a>
+            <a href="#top" class="social-btn" aria-label="Instagram">IG</a>
+            <a href="#top" class="social-btn" aria-label="LINE 官方帳號">LINE</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">西式經典分類</h4>
+          <ul class="footer-links">
+            <li><a href="#menu">招牌手打厚牛堡</a></li>
+            <li><a href="#menu">酥烤純奶香吐司</a></li>
+            <li><a href="#menu">歐姆蛋早午餐大拼盤</a></li>
+            <li><a href="#menu">金黃酥脆薯餅點心</a></li>
+            <li><a href="#menu">小農鮮奶茶與義式黑咖啡</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">常客專區</h4>
+          <ul class="footer-links">
+            <li><a href="#deals">晨光特惠活動</a></li>
+            <li><a href="#deals">滿額集點兌換辦法</a></li>
+            <li><a href="#order-now">外帶免排隊通道</a></li>
+            <li><a href="#order-now">公司機關團購訂購</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">服務與營業時間</h4>
+          <ul class="footer-links">
+            <li>平日：06:00 - 13:30</li>
+            <li>假日：06:30 - 14:00</li>
+            <li>電話：(02) 2345-6789</li>
+            <li>地址：台北市大安區晨光路一段 88 號</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 阿勝早餐 A-Sheng Breakfast. 版權所有.</span>
+        <span>依據網站規格製作・藍色品牌朝食主調</span>
+      </div>
+    </div>
   </footer>
-  <div class="toast" role="status" aria-live="polite"></div>
 
+  <!-- 浮動提示 Toast -->
+  <div class="toast-msg" id="toastMessage" role="status" aria-live="polite">已成功將餐點加入點餐單！</div>
+
+  <!-- JavaScript 互動功能 -->
   <script>
-    (() => {
-      const menuButton = document.querySelector('.menu-toggle');
-      const navLinks = document.querySelector('.nav-links');
-      const toast = document.querySelector('.toast');
-      let toastTimer;
+    // 購物車清單狀態
+    let cart = [];
 
-      const closeMenu = () => {
-        navLinks.classList.remove('open');
-        menuButton.setAttribute('aria-expanded', 'false');
-        menuButton.setAttribute('aria-label', '開啟導覽選單');
-        menuButton.textContent = '☰';
-      };
-      menuButton.addEventListener('click', () => {
-        const opening = !navLinks.classList.contains('open');
-        navLinks.classList.toggle('open', opening);
-        menuButton.setAttribute('aria-expanded', String(opening));
-        menuButton.setAttribute('aria-label', opening ? '關閉導覽選單' : '開啟導覽選單');
-        menuButton.textContent = opening ? '×' : '☰';
-      });
-      navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+    // 行動版漢堡選單切換
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
 
-      const showToast = message => {
-        clearTimeout(toastTimer);
-        toast.textContent = message;
-        toast.classList.add('show');
-        toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
-      };
-      document.querySelectorAll('[data-coffee]').forEach(button => {
-        button.addEventListener('click', () => showToast(`已將「${button.dataset.coffee}」加入你的收藏。`));
-      });
-      document.querySelector('#subscribeForm').addEventListener('submit', event => {
-        event.preventDefault();
-        event.currentTarget.reset();
-        showToast('謝謝訂閱，下一封晴朗的風味通信即將寄出。');
-      });
+    function toggleMobileMenu() {
+      if (!navMenu || !mobileMenuBtn) return;
+      const isOpen = navMenu.classList.toggle('active');
+      mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+      mobileMenuBtn.setAttribute('aria-label', isOpen ? '關閉行動導覽選單' : '開啟行動導覽選單');
+      mobileMenuBtn.textContent = isOpen ? '×' : '☰';
+    }
 
-      const revealItems = document.querySelectorAll('.reveal');
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!('IntersectionObserver' in window) || reducedMotion) {
-        revealItems.forEach(item => item.classList.add('visible'));
-      } else {
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: .12 });
-        revealItems.forEach(item => observer.observe(item));
+    function closeMobileMenu() {
+      if (!navMenu || !mobileMenuBtn) return;
+      navMenu.classList.remove('active');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      mobileMenuBtn.setAttribute('aria-label', '開啟行動導覽選單');
+      mobileMenuBtn.textContent = '☰';
+    }
+
+    if (mobileMenuBtn && navMenu) {
+      mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+      // 點擊任何導覽連結自動收合
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 820) {
+            closeMobileMenu();
+          }
+        });
+      });
+    }
+
+    // 菜單類別過濾功能
+    function filterMenu(category, tabElement) {
+      const tabs = document.querySelectorAll('.filter-tab');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      if (tabElement) {
+        tabElement.classList.add('active');
       }
-    })();
+
+      const cards = document.querySelectorAll('.food-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // 加入購物車
+    function addToCart(name, price) {
+      const existingItem = cart.find(item => item.name === name);
+      if (existingItem) {
+        existingItem.qty += 1;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      updateCartUI();
+      showToast(`已加入「${name}」！`);
+    }
+
+    // 更新數量
+    function changeQty(name, delta) {
+      const item = cart.find(i => i.name === name);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.name !== name);
+      }
+      updateCartUI();
+    }
+
+    // 更新購物車顯示介面
+    function updateCartUI() {
+      const cartBadge = document.getElementById('cartBadge');
+      const cartItemsList = document.getElementById('cartItemsList');
+      const cartTotalPrice = document.getElementById('cartTotalPrice');
+
+      const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      if (cartBadge) cartBadge.textContent = totalCount;
+      if (cartTotalPrice) cartTotalPrice.textContent = totalPrice;
+
+      if (cartItemsList) {
+        if (cart.length === 0) {
+          cartItemsList.innerHTML = '<div class="cart-empty-message">目前尚未選取餐點，請點選菜單中的「＋ 加入點單」！</div>';
+        } else {
+          cartItemsList.innerHTML = cart.map(item => `
+            <div class="cart-item-row">
+              <div class="cart-item-info">
+                <h4>${item.name}</h4>
+                <span>NT$ ${item.price} × ${item.qty} = NT$ ${item.price * item.qty}</span>
+              </div>
+              <div class="cart-qty-controls">
+                <button class="qty-btn" type="button" aria-label="減少數量" onclick="changeQty('${item.name}', -1)">-</button>
+                <span class="qty-display">${item.qty}</span>
+                <button class="qty-btn" type="button" aria-label="增加數量" onclick="changeQty('${item.name}', 1)">+</button>
+              </div>
+            </div>
+          `).join('');
+        }
+      }
+
+      // 同步填入表單文字
+      const orderItemsText = document.getElementById('orderItemsText');
+      if (orderItemsText && cart.length > 0) {
+        orderItemsText.value = cart.map(i => `${i.name} × ${i.qty}`).join('、 ');
+      }
+    }
+
+    // 開關購物車抽屜
+    const openCartBtn = document.getElementById('openCartBtn');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const cartOverlay = document.getElementById('cartOverlay');
+
+    function openCart() {
+      if (!cartDrawer || !cartOverlay) return;
+      cartDrawer.classList.add('active');
+      cartOverlay.classList.add('active');
+      cartDrawer.setAttribute('aria-hidden', 'false');
+      if (openCartBtn) openCartBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeCart() {
+      if (!cartDrawer || !cartOverlay) return;
+      cartDrawer.classList.remove('active');
+      cartOverlay.classList.remove('active');
+      cartDrawer.setAttribute('aria-hidden', 'true');
+      if (openCartBtn) openCartBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    if (openCartBtn) {
+      openCartBtn.addEventListener('click', openCart);
+    }
+
+    // 從購物車前往結帳填單
+    function proceedToCheckout() {
+      closeCart();
+      const orderSection = document.getElementById('order-now');
+      if (orderSection) {
+        orderSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // 提示通知 Toast
+    let toastTimeout;
+    function showToast(text) {
+      const toast = document.getElementById('toastMessage');
+      if (!toast) return;
+      toast.textContent = text;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    // 表單送出處理
+    function handleOrderSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const time = document.getElementById('pickupTime').value;
+
+      if (!name || !phone) {
+        alert('請完整填寫姓名與電話，以便出餐確認！');
+        return;
+      }
+
+      alert(`🎉 預約成功！\n\n感謝 ${name} 訂餐，我們已開始為您現做！\n預計取餐時間：${time}\n請至門市「外帶快速通道」憑手機末三碼領餐。`);
+      
+      // 清空表單與購物車
+      document.getElementById('quickOrderForm').reset();
+      cart = [];
+      updateCartUI();
+    }
   </script>
 </body>
 </html>
